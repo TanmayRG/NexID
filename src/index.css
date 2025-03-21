@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+  }
+
+  body {
+    @apply bg-black text-white;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background: linear-gradient(to bottom, #000000, #061121);
+    min-height: 100vh;
+  }
+}
+
+/* Glass morphism effects - improved */
+.glass {
+  @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-lg;
+}
+
+.glass-dark {
+  @apply backdrop-blur-xl bg-black/20 border border-white/5 shadow-xl;
+}
+
+/* Scanner elements - kept as they are since you like them */
+.scanner-dot {
+  @apply w-2 h-2 rounded-full bg-scanner-primary;
+}
+
+.scanner-line {
+  @apply h-0.5 w-full absolute bg-gradient-to-r from-transparent via-scanner-primary to-transparent;
+}
+
+/* 3D Object styles - improved */
+.object-container {
+  @apply relative w-full h-96 rounded-xl overflow-hidden shadow-2xl;
+  background: radial-gradient(circle at 50% 50%, rgba(3, 7, 18, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.info-panel {
+  @apply absolute p-4 rounded-lg glass-dark transition-all duration-500;
+}
+
+/* Futuristic UI elements - improved */
+.scanner-circle {
+  @apply absolute rounded-full border border-scanner-primary opacity-70;
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+}
+
+.scanner-bracket {
+  @apply absolute w-8 h-8 border-scanner-primary opacity-80;
+}
+
+.scanner-bracket-tl {
+  @apply top-0 left-0 border-t-2 border-l-2 rounded-tl-md;
+}
+
+.scanner-bracket-tr {
+  @apply top-0 right-0 border-t-2 border-r-2 rounded-tr-md;
+}
+
+.scanner-bracket-bl {
+  @apply bottom-0 left-0 border-b-2 border-l-2 rounded-bl-md;
+}
+
+.scanner-bracket-br {
+  @apply bottom-0 right-0 border-b-2 border-r-2 rounded-br-md;
+}
+
+/* Enhanced animations */
+@keyframes pulse-glow {
+  0%, 100% { 
+    opacity: 0.6;
+    box-shadow: 0 0 5px rgba(14, 165, 233, 0.3);
+  }
+  50% { 
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Enhanced button styles */
+.futuristic-button {
+  @apply relative overflow-hidden bg-gradient-to-r from-scanner-primary/60 to-scanner-accent/60 backdrop-blur-md 
+         px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 border border-white/10
+         hover:from-scanner-primary hover:to-scanner-accent hover:shadow-lg hover:shadow-scanner-primary/20;
+}
+
+.futuristic-button::before {
+  content: '';
+  @apply absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300;
+}
+
+.futuristic-button:hover::before {
+  @apply opacity-20;
+}
+
+/* New scanner animation keyframes */
+@keyframes scan-line-horizontal {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes scan-ring {
+  0% { transform: scale(0.2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Keep the existing animation keyframes */
+@keyframes scan-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes scan-circle {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes pulse-highlight {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Animation classes */
+.animate-scan-line-horizontal {
+  animation: scan-line-horizontal 3s ease-in-out infinite;
+}
+
+.animate-scan-ring {
+  animation: scan-ring 4s cubic-bezier(0, 0.55, 0.45, 1) infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.animate-pulse-highlight {
+  animation: pulse-highlight 2s ease-in-out infinite;
+}
